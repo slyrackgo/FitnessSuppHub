@@ -1,0 +1,23 @@
+/* src/Header.css */
+header h1 {
+    margin: 0;
+  }
+  
+  nav ul {
+    margin: 0;
+  }
+  
+  nav ul li {
+    color: #fff;
+  }
+  
+  /* src/Main.css */
+  #main-info {
+    text-align: center;
+  }
+  
+  /* src/Footer.css */
+  #contact-info {
+    text-align: center;
+  }
+  

@@ -1,23 +1,45 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useState } from 'react';
 import './App.css';
+import Header from './Header';
+import ProductList from './ProductList';  // Adjust the import path
+import ShoppingCart from './ShoppingCart';
+import Bucket from './Bucket';
+import Footer from './Footer';
 
 function App() {
+  const [cartItems, setCartItems] = useState([]);
+  const [bucketItems, setBucketItems] = useState([]);
+
+  const addToCart = (product) => {
+    setCartItems([...cartItems, { ...product }]);
+  };
+
+  const removeFromCart = (productId) => {
+    const updatedCart = cartItems.filter((item) => item.id !== productId);
+    setCartItems(updatedCart);
+  };
+
+  const addToBucket = (product) => {
+    setBucketItems([...bucketItems, { ...product }]);
+    removeFromCart(product.id);
+  };
+
+  const removeFromBucket = (productId) => {
+    const updatedBucket = bucketItems.filter((item) => item.id !== productId);
+    setBucketItems(updatedBucket);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className="App-content">
+        {/* Updated ProductList component with images */}
+        <ProductList addToCart={addToCart} />
+        <ShoppingCart cartItems={cartItems} addToBucket={addToBucket} removeFromCart={removeFromCart} />
+        <Bucket bucketItems={bucketItems} removeFromBucket={removeFromBucket} />
+      </div>
+      <Footer/>
     </div>
   );
 }
