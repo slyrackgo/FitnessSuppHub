@@ -1,9 +1,13 @@
-// src/Bucket.js
 import React from 'react';
 
 const Bucket = ({ bucketItems, removeFromBucket }) => {
   // Calculate the total price
   const totalPrice = bucketItems.reduce((total, item) => total + item.price, 0).toFixed(2);
+
+  const handleProceedToPayment = () => {
+    // Open a new window with the payment.html file
+    window.open('/payment.html', '_blank');
+  };
 
   return (
     <div>
@@ -19,7 +23,7 @@ const Bucket = ({ bucketItems, removeFromBucket }) => {
       {bucketItems.length > 0 && (
         <div>
           <p>Total Price: ${totalPrice}</p>
-          <button onClick={() => alert('Proceed to Payment')}>Proceed to Payment</button>
+          <button onClick={handleProceedToPayment}>Proceed to Payment</button>
         </div>
       )}
     </div>

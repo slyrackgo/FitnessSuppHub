@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './Header';
-import ProductList from './ProductList';  // Adjust the import path
+import ProductList from './ProductList';
 import ShoppingCart from './ShoppingCart';
 import Bucket from './Bucket';
 import Footer from './Footer';
@@ -29,17 +29,16 @@ function App() {
     const updatedBucket = bucketItems.filter((item) => item.id !== productId);
     setBucketItems(updatedBucket);
   };
-
+  
   return (
     <div className="App">
       <Header />
       <div className="App-content">
-        {/* Updated ProductList component with images */}
         <ProductList addToCart={addToCart} />
         <ShoppingCart cartItems={cartItems} addToBucket={addToBucket} removeFromCart={removeFromCart} />
         <Bucket bucketItems={bucketItems} removeFromBucket={removeFromBucket} />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
